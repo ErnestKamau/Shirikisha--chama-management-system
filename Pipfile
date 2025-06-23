@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-jwt-extended = "*"
@@ -24,6 +23,10 @@ gunicorn = "*"
 pytest = "*"
 pytest-flask = "*"
 coverage = "*"
+honcho = "*"
+flask = "*"
+flask-restful = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 

@@ -3,6 +3,7 @@ Flask-SQLAlchemy
 Flask-Migrate
 Flask-JWT-Extended
 Flask-CORS
+Flask-restful
 Flask-Mail
 Werkzeug
 python-dotenv
@@ -17,4 +18,4 @@ redis
 gunicorn
 pytest
 pytest-flask
-coverage
+coverages
