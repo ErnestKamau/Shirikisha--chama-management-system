@@ -1,4 +1,10 @@
 import { useEffect, useState } from "react"
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Features from './components/features/Features';
+import CTA from './components/CTA';
+import Footer from './components/Footer';
 
 function App() {
   const [users, setUsers] = useState([])
@@ -13,16 +19,16 @@ function App() {
   }, [])
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold bg-red-400">Hello</h1>
-      <p>This is cool</p>
-      <ul className="mt-4">
-        {users.map((user) => (
-          <p key={user.id} className="text-lg">{user.full_name}</p>
-        ))}
-      </ul>
-    </div>
-  )
+     <div className="bg-white font-sans">
+            <Header />
+            <main>
+                <Hero />
+                <Features />
+                <CTA />
+            </main>
+            <Footer />
+        </div>
+    );
 }
 
 export default App
