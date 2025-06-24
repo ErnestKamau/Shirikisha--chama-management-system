@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from flask_restful import Api, Resource
 from config import app, api, db, jwt, bcrypt
 from models import User, Meeting, ChamaGroup, Loan, Attendance, Announcement, LoanRepayment, Contribution, Membership
-
+from controllers.auth_controllers import Register
 
 
 @app.errorhandler(404)
@@ -42,6 +42,7 @@ class UserLogin(Resource):
 api.add_resource(Home, '/api/home', endpoint='home')
 api.add_resource(Users, '/api/users', endpoint='users')
 api.add_resource(UserLogin, '/api/login')
+api.add_resource(Register, '/api/register', endpoint='register')
 
 if __name__  == "__main__":
     app.run(port=5555, debug=True)

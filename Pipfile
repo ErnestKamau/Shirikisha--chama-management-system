@@ -25,9 +25,9 @@ pytest-flask = "*"
 coverage = "*"
 honcho = "*"
 flask = "*"
-flask-restful = "*"
 flask-bcrypt = "*"
 sqlalchemy-serializer = "*"
+flask-restful = "*"
 
 [dev-packages]
 
