@@ -11,8 +11,8 @@ class Attendance(db.Model, SerializerMixin):
     attended = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', backref='attendances')
-    meeting = db.relationship('Meeting', backref='attendees')
-    
+    meeting = db.relationship('Meeting', back_populates='attendances')
+   
     serialize_rules = ('-user.attendances', '-meeting.attendees')
     
     

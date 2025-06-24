@@ -14,7 +14,19 @@ class Home(Resource):
     def get(self):
         return make_response({"message": "Welcome to the Late Show API"}, 200)
     
+
+
+class Users(Resource):
+    def get(self):
+        users = User.query.all()
+        l = [user.to_dict() for user in users]
+        return make_response({"users": l}, 200)
+    
+
+    
+    
 api.add_resource(Home, '/api/home', endpoint='home')
+api.add_resource(Users, '/api/users', endpoint='users')
 
 if __name__  == "__main__":
     app.run(port=5555, debug=True)

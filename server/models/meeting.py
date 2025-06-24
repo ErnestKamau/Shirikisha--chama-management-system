@@ -11,7 +11,8 @@ class Meeting(db.Model, SerializerMixin):
     agenda = db.Column(db.Text)
     group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'))
 
-    attendees = db.relationship('Attendance', backref='meeting', cascade='all, delete-orphan')
+    attendances = db.relationship('Attendance', back_populates='meeting', cascade='all, delete-orphan')
+
     
     serialize_rules = ('-group.meetings', '-attendees.meeting')
     
