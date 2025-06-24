@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
