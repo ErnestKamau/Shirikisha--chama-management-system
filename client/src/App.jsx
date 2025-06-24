@@ -18,7 +18,7 @@ function App() {
       <p>This is cool</p>
       <ul className="mt-4">
         {users.map((user) => (
-          <p key={user.id} className="text-lg">{user.full_name}</p>
+          <p key={user.id} className="text-lg">{user.full_name}, {user._password_hash}</p>
         ))}
       </ul>
     </div>
