@@ -7,14 +7,12 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 
 function App() {
-  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        setUsers(data.users)
       })
   }, [])
 
