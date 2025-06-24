@@ -1,4 +1,5 @@
 from flask import Flask, make_response, request, jsonify
+from flask_jwt_extended import JWTManager, create_access_token
 from flask_restful import Resource
 from models import User 
 from config import db, bcrypt
@@ -18,3 +19,16 @@ class Register(Resource):
         db.session.add(user)
         db.session.commit()
         return make_response({"message":"user created successfully"}, 201)
+    
+
+class UserLogin(Resource):
+    def login(self):
+        data = request.get_json()
+        
+        user = User.query.filter(User.email==data['email']).first()
+        
+        if user and user.authenticate(data['password']):
+            token = create_access_token(identity={"id":user.id, "role":user.role})
+            return jsonify({'token': token, 'role': user.role}), 200
+        
+        return jsonify({'error': 'Invalid credentials'}), 401
