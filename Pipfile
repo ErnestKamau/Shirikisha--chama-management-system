@@ -27,6 +27,7 @@ honcho = "*"
 flask = "*"
 flask-restful = "*"
 flask-bcrypt = "*"
+sqlalchemy-serializer = "*"
 
 [dev-packages]
 
