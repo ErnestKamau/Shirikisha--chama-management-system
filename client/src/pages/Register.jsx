@@ -20,16 +20,18 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      await axios.post('/api/register', formData);
-      alert('Registration successful! Please log in.');
-      navigate('/login');
-    } catch (err) {
-      console.error(err);
-      alert('Registration failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+
+try {
+  await axios.post('/api/register', formData);
+  alert('Registration successful! Please log in.');
+  navigate('/login');
+} catch (err) {
+  console.error(err);
+  alert('Registration failed. Please try again.');
+} finally {
+  setIsLoading(false);
+}
+
   };
 
   return (
@@ -50,61 +52,63 @@ const Register = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium">Phone</label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              required
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-            />
-          </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
-          >
-            {isLoading ? 'Registering...' : 'Sign Up'}
-          </button>
-        </form>
-
-        <p className="text-sm text-center mt-4">
-          Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
-        </p>
+      <div>
+        <label htmlFor="phone" className="block text-sm font-medium">Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          required
+          value={formData.phone}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+        />
       </div>
-    </div>
+
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          required
+          value={formData.email}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="password" className="block text-sm font-medium">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          value={formData.password}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+      >
+        {isLoading ? 'Registering...' : 'Sign Up'}
+      </button>
+    </form>
+
+    <p className="text-sm text-center mt-4">
+      Already have an account?{' '}
+      <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
+    </p>
+  </div>
+</div>
   );
 };
 
 export default Register;
+

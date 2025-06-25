@@ -42,8 +42,8 @@ const Features = () => {
                     </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {featuresData.map((feature, index) => (
-                        <FeatureCard key={index} {...feature} />
+                    {featuresData.map((feature) => (
+                        <FeatureCard key={feature.title} {...feature} />
                     ))}
                 </div>
             </div>

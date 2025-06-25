@@ -22,26 +22,26 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const res = await axios.post('/api/login', {
-        email: formData.email,
-        password: formData.password,
-      });
+try {
+  const res = await axios.post('/api/login', {
+    email: formData.email,
+    password: formData.password,
+  });
 
-      const userData = {
-        id: res.data.id,
-        email: formData.email,
-        role: res.data.role,
-      };
+  const userData = {
+    id: res.data.id,
+    email: formData.email,
+    role: res.data.role,
+  };
 
-      login(userData, res.data.token);
-      navigate('/dashboard');
-    } catch (err) {
-      alert('Login failed: Invalid email or password');
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
+  login(userData, res.data.token);
+  navigate('/dashboard');
+} catch (err) {
+  alert('Login failed: Invalid email or password');
+  console.error(err);
+} finally {
+  setIsLoading(false);
+}
   };
 
   return (
@@ -62,46 +62,44 @@ const Login = () => {
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium">Password</label>
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                id="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 px-3 flex items-center text-sm"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? '🙈' : '👁️'}
-              </button>
-            </div>
-          </div>
-
+      <div>
+        <label htmlFor="password" className="block text-sm font-medium">Password</label>
+        <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            id="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
           <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            type="button"
+            className="absolute inset-y-0 right-0 px-3 flex items-center text-sm"
+            onClick={() => setShowPassword(!showPassword)}
           >
-            {isLoading ? 'Signing in...' : 'Sign In'}
+            {showPassword ? '🙈' : '👁️'}
           </button>
-        </form>
-
-        <p className="text-sm text-center mt-4">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:underline">Register</Link>
-        </p>
+        </div>
       </div>
-    </div>
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+      >
+        {isLoading ? 'Signing in...' : 'Sign In'}
+      </button>
+    </form>
+
+    <p className="text-sm text-center mt-4">
+      Don't have an account?{' '}
+      <Link to="/register" className="text-blue-600 hover:underline">Register</Link>
+    </p>
+  </div>
+</div>
   );
 };
 
-
-export default Login;
-
+export default Login
