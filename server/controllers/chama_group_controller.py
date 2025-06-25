@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
@@ -6,7 +5,7 @@ from datetime import datetime, timezone
 from config import db
 from models import ChamaGroup, Membership, User 
 
-class ChamaGroupActions(Resource):
+class CreateChamaGroup(Resource):
     @jwt_required()
     def create_chama_group(self):
         identity = get_jwt_identity()
@@ -21,14 +20,15 @@ class ChamaGroupActions(Resource):
         db.session.add(membership)
         db.session.commit()
         
-        
+class GetGroupMembers(Resource):   
     @jwt_required
     def get_chama_group_members(self, group_id):
         members = Membership.query.filter(Membership.group_id == group_id).all()
         
         return jsonify([{'member': m.user_id, 'role':m.role }for m in members]), 200
     
-    
+
+class AddUserToGroup(Resource):    
     @jwt_required
     def add_user_to_chama_group(self, person_id, group_id):
         identity = get_jwt_identity()
@@ -54,7 +54,7 @@ class ChamaGroupActions(Resource):
                     db.session.commit()
             
     
-    
+class ChangeMemberRole(Resource):  
     @jwt_required
     def change_member_role(self, group_id, user_id):
         identity = get_jwt_identity()
@@ -77,13 +77,24 @@ class ChamaGroupActions(Resource):
             else:
                 return jsonify({'error': 'Invalid role specified'}), 400 
             
+class RemoveMember(Resource):      
+    @jwt_required
+    def remove_member(self, user_id, group_id):
+        identity = get_jwt_identity()
+        admin = Membership.query.filter(Membership.id == identity['id']).first()
+        
+        
+        if not admin and admin.role != 'chair':
+            return jsonify({'error': 'Unauthorized'}), 403
+        else:
+            membership = Membership.query.filter_by(group_id=group_id, user_id=user_id).first()
+            if not membership:
+                return jsonify({'error': 'Member not found in group'}), 404
+
+            db.session.delete(membership)
+            db.session.commit()
+            return jsonify({'message': 'Member removed from group'})
+
+        
                 
-            
-            
-        
     
-    
-        
-        
-        
-        
