@@ -49,7 +49,7 @@ class ChamaGroupActions(Resource):
             if new_role and new_role in allowed_roles:
                 membership.role = new_role
                 db.session.commit()
-                return jsonify({'message': 'Role updated'})
+                return jsonify({'message': 'Role updated!'})
             else:
                 return jsonify({'error': 'Invalid role specified'}), 400 
             
