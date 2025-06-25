@@ -20,6 +20,7 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
 
+
 try {
   await axios.post('/api/register', formData);
   alert('Registration successful! Please log in.');
@@ -30,6 +31,7 @@ try {
 } finally {
   setIsLoading(false);
 }
+
   };
 
   return (
@@ -49,6 +51,7 @@ try {
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
             />
           </div>
+
 
       <div>
         <label htmlFor="phone" className="block text-sm font-medium">Phone</label>
@@ -108,3 +111,4 @@ try {
 };
 
 export default Register;
+

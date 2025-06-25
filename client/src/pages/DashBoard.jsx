@@ -59,6 +59,7 @@ const DashBoard = () => {
     </div>
   </div>
 </div>
+
   );
 };
 
@@ -73,4 +74,6 @@ const DashboardCard = ({ icon, title, description, onClick }) => (
   </div>
 );
 
+
 export default DashBoard;
+
