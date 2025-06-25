@@ -10,7 +10,7 @@ class Membership(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'), nullable=False)
-    role = db.Column(db.String(50), default='member')  # member, admin, treasurer
+    role = db.Column(db.String(50), default='member')  # member,chair(admin), treasurer
     joined_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     
     serialize_rules = ('-user.memberships', '-group.memberships')

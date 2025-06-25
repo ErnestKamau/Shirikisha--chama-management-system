@@ -12,16 +12,15 @@ with app.app_context():
 
     # Create sample user
     print("Creating initial user...")
-    password = "password123"
-    password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+    password = "password123"  # The real plaintext password
 
     user = User(
         full_name="Ernest Kamau",
         email="ernest@shirikisha.com",
         phone="0712345678",
-        _password_hash=password_hash,
         joined_at=datetime.now(timezone.utc)
     )
+    user.password_hash = password  # Let the setter handle hashing
 
     # Create a Chama Group
     print("Creating chama group...")

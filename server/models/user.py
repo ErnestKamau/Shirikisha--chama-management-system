@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin):
     phone = db.Column(db.String(20), unique=True)
     _password_hash = db.Column(db.String(128))
     joined_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    role = db.Column(db.String(20), default='user')
 
     memberships = db.relationship('Membership', backref='user', cascade='all, delete-orphan')
     
