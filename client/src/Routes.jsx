@@ -2,6 +2,8 @@
 import { Routes, Route } from 'react-router-dom';
 import PublicLayout from '../layouts/PublicLayout';
 import ProtectedLayout from '../layouts/ProtectedLayout';
+import HomePage from '../pages/HomePage';
+import Register from './components/register';
 // Import all your page components...
 
 export const AppRoutes = () => {
