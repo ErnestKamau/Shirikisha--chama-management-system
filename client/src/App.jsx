@@ -1,31 +1,10 @@
-import React, { useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/features/Features';
-import Cta from './components/CTA';
-import Footer from './components/Footer';
+import React from 'react';
+import { AppRoutes } from './Routes';
 
 function App() {
 
-  useEffect(() => {
-    fetch("/api/home")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      })
-  }, [])
-
-  return (
-     <div className="bg-white font-sans">
-            <Header />
-            <main>
-                <Hero />
-                <Features />
-                <Cta />
-            </main>
-            <Footer />
-        </div>
-    );
+  return <AppRoutes />;
 }
 
-export default App
+export default App;
+
