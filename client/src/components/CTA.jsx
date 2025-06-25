@@ -2,11 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CTA = () => {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/register');
-    };
+    function handleSignUp() {
+        window.location.href = '/register';
+    }
 
     return (
         <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
@@ -16,16 +14,13 @@ const CTA = () => {
                     Join hundreds of groups already using our platform to manage their investments.
                 </p>
                 <div className="mt-8">
-                    <button 
-                        onClick={handleClick}
-                        className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-lg text-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
-                    >
-                        Start Your Free Trial
+                    <button onClick={handleSignUp} className="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-lg text-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                        Sign Up and Start Your Free Trial
                     </button>
                 </div>
             </div>
         </section>
     );
-};
+}
 
 export default CTA;
