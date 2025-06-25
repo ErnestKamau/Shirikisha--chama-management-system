@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { AppRoutes } from './routes/Routes';
+// import { AuthProvider } from './context/AuthContext';
+import { AppRoutes } from './Routes';
 
 function App() {
 
@@ -18,11 +18,11 @@ function App() {
 
 
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <Router>
         <AppRoutes />
       </Router>
-    </AuthProvider>
+    // </AuthProvider>
   );
 }
 
