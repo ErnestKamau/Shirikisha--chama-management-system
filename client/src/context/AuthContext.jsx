@@ -1,6 +1,6 @@
 import { useAuth } from '../context/AuthContext';
 
-const SomeComponent = () => {
+const AuthProvider = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
   
   // Use these values/functions as needed
@@ -16,3 +16,5 @@ const SomeComponent = () => {
     </div>
   );
 };
+
+export default AuthProvider;

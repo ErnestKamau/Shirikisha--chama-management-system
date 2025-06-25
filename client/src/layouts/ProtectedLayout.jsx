@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Sidebar from '../components/Sidebar';
+// import Sidebar from '../components/Sidebar';
 
 const ProtectedLayout = () => {
   const { isAuthenticated } = useAuth();
@@ -11,7 +11,7 @@ const ProtectedLayout = () => {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="flex-1">
         <Outlet /> {/* This renders the child routes */}
       </div>

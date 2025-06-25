@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import PublicLayout from '../layouts/PublicLayout';
 import ProtectedLayout from '../layouts/ProtectedLayout';
 import HomePage from '../pages/HomePage';
-import Register from './components/register';
+import Register from './pages/register';
 // Import all your page components...
 
 export const AppRoutes = () => {
@@ -17,11 +17,11 @@ export const AppRoutes = () => {
       </Route>
 
       {/* Protected Routes */}
-      <Route element={<ProtectedLayout />}>
+      {/* <Route element={<ProtectedLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/chamas" element={<Chamas />} />
         {/* ... other protected routes */}
-      </Route>
+      {/* </Route> */} 
     </Routes>
   );
 };
