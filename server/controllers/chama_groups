@@ -1,5 +1,44 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
+from datetime import datetime, timezone
+from config import db
+from models import ChamaGroup, Membership, User 
 
+class ChamaGroupActions(Resource):
+    @jwt_required()
+    def create_chama_group(self):
+        identity = get_jwt_identity()
+        data = request.get_json()
+        
+        chama_group = ChamaGroup(name=data['name'], description=data['description'], created_at=datetime.now(timezone.utc))
+        
+        db.session.add(chama_group)
+        db.session.commit()
+        
+        membership = Membership(user_id=identity['id'], group_id=chama_group.id, role='chair/admin', joined_at=datetime.now(timezone.utc))
+        db.session.add(membership)
+        db.session.commit()
+        
+        
+    # @jwt_required
+    # def add_members(self, )
+        
+        
+    # @jwt_required
+    # def get_chama_group_members(self, group_id):
+    #     members = Membership.query.filter(Membership.group_id == group_id).all()
+        
+    #     return jsonify([{'member': m.user_id, 'role':m.role }for m in members]), 200
+    
+    
+    # @jwt_required
+    # def change_member_role(self, group_id, user_id):
+    #     user = User.query.
+    
+    
+        
+        
+        
+        
