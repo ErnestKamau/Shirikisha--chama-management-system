@@ -1,29 +1,9 @@
-import React, { useEffect } from 'react';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import React from 'react';
 import { AppRoutes } from './Routes';
 
 function App() {
-
-  useEffect(() => {
-    fetch("/api/home")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      })
-  }, [])
-
-
-
-
-  return (
-    <AuthProvider>
-      <Router>
-        <AppRoutes />
-      </Router>
-    </AuthProvider>
-  );
+  return <AppRoutes />;
 }
+
 
 export default App;
