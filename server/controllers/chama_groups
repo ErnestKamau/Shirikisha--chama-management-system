@@ -22,20 +22,14 @@ class ChamaGroupActions(Resource):
         db.session.commit()
         
         
-    # @jwt_required
-    # def add_members(self, )
+    @jwt_required
+    def get_chama_group_members(self, group_id):
+        members = Membership.query.filter(Membership.group_id == group_id).all()
         
-        
-    # @jwt_required
-    # def get_chama_group_members(self, group_id):
-    #     members = Membership.query.filter(Membership.group_id == group_id).all()
-        
-    #     return jsonify([{'member': m.user_id, 'role':m.role }for m in members]), 200
+        return jsonify([{'member': m.user_id, 'role':m.role }for m in members]), 200
     
     
-    # @jwt_required
-    # def change_member_role(self, group_id, user_id):
-    #     user = User.query.
+    
     
     
         
