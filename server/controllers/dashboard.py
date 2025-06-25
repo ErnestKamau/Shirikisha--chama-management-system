@@ -1,13 +1,13 @@
-from flask import Flask, jsonify
+from flask import jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 
-@jwt_required()
 class Dashboard(Resource):
-    def dashboard(self):
+    @jwt_required()
+    def get(self):
         identity = get_jwt_identity()
         
         return jsonify({
-        'message': f"Welcome, user {identity['id']}",
-        'role': identity['role']
-    })
+            'message': f"Welcome, user {identity['id']}",
+            'role': identity['role']
+        })

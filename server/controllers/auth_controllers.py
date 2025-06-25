@@ -10,7 +10,7 @@ class Register(Resource):
         data = request.get_json()
 
         if User.query.filter(User.email==data['email']).first():
-            return make_response({"error": "Username already exists"}, 409)
+            return {"error": "Username already exists"}, 409
         
         password_hashed = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
@@ -18,17 +18,17 @@ class Register(Resource):
 
         db.session.add(user)
         db.session.commit()
-        return make_response({"message":"user created successfully"}, 201)
+        return {"message":"user created successfully"}, 201
     
 
 class UserLogin(Resource):
-    def login(self):
+    def post(self):
         data = request.get_json()
         
         user = User.query.filter(User.email==data['email']).first()
         
         if user and user.authenticate(data['password']):
             token = create_access_token(identity={"id":user.id, "role":user.role})
-            return jsonify({'token': token, 'role': user.role}), 200
+            return {'token': token, 'role': user.role}, 200
         
-        return jsonify({'error': 'Invalid credentials'}), 401
+        return {'error': 'Invalid credentials'}, 401
