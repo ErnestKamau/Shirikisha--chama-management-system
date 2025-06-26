@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Home, Users, PlusCircle, Bell, User, BarChart, Clock, ChevronsRight, LogOut, ArrowUpRight, CircleUserRound, BadgePlus, Eye, Wallet, Calendar, CheckCircle, ArrowLeft } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 
-// Mock data - replace with actual data from your backend/context
+
+// Mock data - actual data from your backend/context
 const user = {
   name: 'levi',
   email: 'levi.muturi@student.moringaschool.com',
@@ -125,15 +127,14 @@ const CreateChamaPage = ({ navigate }) => {
 
     const steps = [
         { id: 1, name: 'Basic Information', icon: User },
-        { id: 2, name: 'Financial Settings', icon: Wallet },
-        { id: 3, name: 'Meeting Schedule', icon: Calendar },
-        { id: 4, name: 'Review & Create', icon: CheckCircle }
+        { id: 2, name: 'Meeting Schedule', icon: Calendar },
+        { id: 3, name: 'Review & Create', icon: CheckCircle }
     ];
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans">
             <div className="flex">
-                <Sidebar navigate={navigate} currentPage="create-chama"/>
+               
                 <main className="flex-1 p-4 sm:p-6 lg:p-8">
                     <Header user={user} handleLogout={() => {}} navigate={navigate} />
                     
@@ -163,9 +164,8 @@ const CreateChamaPage = ({ navigate }) => {
                         {/* Form Content */}
                         <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
                             {step === 1 && <BasicInfoStep formData={formData} handleChange={handleChange} />}
-                            {step === 2 && <DummyStep title="Financial Settings" />}
-                            {step === 3 && <DummyStep title="Meeting Schedule" />}
-                            {step === 4 && <DummyStep title="Review & Create" />}
+                            {step === 2 && <DummyStep title="Meeting Schedule" />}
+                            {step === 3 && <DummyStep title="Review & Create" />}
 
                             {/* Navigation Buttons */}
                             <div className="flex justify-between mt-8">
