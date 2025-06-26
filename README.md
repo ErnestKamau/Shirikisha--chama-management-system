@@ -26,3 +26,10 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 flask db upgrade
 flask run
+
+###Frontend
+```bash
+cd client
+npm install
+npm run dev
+
