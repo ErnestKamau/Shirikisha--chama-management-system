@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import DashBoard from './pages/DashBoard';
 // import Chamas from '../pages/Chamas';
 // import PrivateRoute from './components/PrivateRoute';
+import { UserProfilePage } from './pages/UserProfilePage';
 
 export const AppRoutes = () => {
   return (
@@ -17,6 +18,7 @@ export const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/profile" element={<UserProfilePage />} />
       </Route>
 
       {/* Protected Routes */}
