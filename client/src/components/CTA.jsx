@@ -5,7 +5,7 @@ const CTA = () => {
     const navigate = useNavigate();
 
     function handleSignUp() {
-        navigate('/register');
+        navigate ('/register');
     }
 
     return (
