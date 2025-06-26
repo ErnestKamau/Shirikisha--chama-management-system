@@ -1,14 +1,11 @@
-import React from 'react';
-import Register from '.components/register';
-import Login from '.components/login';
-
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-    function handleSignIn() {
-        // Redirect to the login page
-        window.location.href = '/login';
-    }
+    const navigate = useNavigate();
 
+    function handleSignIn() {
+       navigate("/login");
+    }
 
     return (
         <header className="absolute top-0 left-0 right-0 z-10 py-6 px-4 sm:px-8 md:px-16 lg:px-24">

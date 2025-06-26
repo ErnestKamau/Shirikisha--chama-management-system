@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Hero = () => {
+    const navigate = useNavigate();
+
     function handleSignIn() {
-        window.location.href = '/login';
+        navigate('/login');
     }
 
     function handleSignUp() {
-        window.location.href = '/register';
+        navigate('/register');
     }
 
 

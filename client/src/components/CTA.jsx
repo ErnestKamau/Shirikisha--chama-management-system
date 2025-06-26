@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CTA = () => {
+    const navigate = useNavigate();
+
     function handleSignUp() {
-        window.location.href = '/register';
+        navigate('/register');
     }
 
     return (
