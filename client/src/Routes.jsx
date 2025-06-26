@@ -6,11 +6,11 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DashBoard from './pages/DashBoard';
 // import PrivateRoute from './components/PrivateRoute';
+
 import ChamaGroupsPage from './pages/ChamaGroupsPage';
 import ChamaDetailPage from './pages/ChamaDetailPage';
 
 import { UserProfilePage } from './pages/UserProfilePage';
-
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +21,7 @@ export const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<DashBoard />} />
+
         <Route path="/chamas" element={<ChamaGroupsPage />} />
         <Route path="/chamas/:id" element={<ChamaDetailPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
