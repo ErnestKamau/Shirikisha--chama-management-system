@@ -5,7 +5,8 @@ from flask_restful import Api, Resource
 from config import app, api, db, jwt, bcrypt
 from controllers.auth_controllers import Register, UserLogin
 from controllers.dashboard import Dashboard
-from controllers.chama_group_controller import CreateChamaGroup, GetGroupMembers, AddUserToGroup, ChangeMemberRole, RemoveMember
+from controllers.chama_group_controller import CreateChamaGroup, GetGroupMembers, AddUserToGroup, ChangeMemberRole, RemoveMember, GetChamaGroups, ChamaGroupDetail
+from controllers.admin_roles_controllers import GetAllUsers, RemoveUserFromGroup
 
 @app.errorhandler(404)
 def not_found(e):
@@ -23,9 +24,16 @@ api.add_resource(UserLogin, '/api/login', endpoint='login')
 api.add_resource(Dashboard, '/api/dashboard', endpoint='dashboard')
 api.add_resource(CreateChamaGroup, '/api/group', endpoint='group')
 api.add_resource(GetGroupMembers, '/api/group/<int:group_id>/members', endpoint='group_members')
-api.add_resource(AddUserToGroup, '/api/group/<int:group_id>/members/<int:person_id>', endpoint='add_member')
-api.add_resource(ChangeMemberRole, '/api/group/<int:group_id>/members/<int:user_id>', endpoint='member_role')
+api.add_resource(AddUserToGroup, '/api/groups/<int:group_id>/add-user/<int:user_id>', endpoint='add_member')
+api.add_resource(ChangeMemberRole, '/api/groups/<int:group_id>/change-role/<int:user_id>', endpoint='member_role')
 api.add_resource(RemoveMember, '/api/group/<int:group_id>/members/<int:user_id>', endpoint='remove_member')
+
+api.add_resource(GetChamaGroups, '/api/user/chamagroups', endpoint='get_groups')
+api.add_resource(ChamaGroupDetail, '/api/chama-groups/<int:group_id>', endpoint='chama_group_detail')
+
+api.add_resource(GetAllUsers, '/api/users')
+api.add_resource(RemoveUserFromGroup, '/api/groups/<int:group_id>/remove-user/<int:user_id>')
+
 
 
 
