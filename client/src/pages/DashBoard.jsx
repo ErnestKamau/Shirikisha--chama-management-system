@@ -243,11 +243,11 @@ const DummyStep = ({ title }) => (
 );
 
 
-// ##### Existing Components (Slightly modified) #####
+// ##### Existing Components ) #####
 
 const Sidebar = ({ navigate, currentPage }) => (
   <aside className="w-64 bg-white p-6 hidden lg:flex flex-col border-r">
-    <div className="text-2xl font-bold text-gray-800 mb-12">ChamaFlow</div>
+    <div className="text-2xl font-bold text-gray-800 mb-12">Shirikisha</div>
     <nav className="flex flex-col space-y-2">
       <SidebarLink icon={<Home />} text="Dashboard" active={currentPage === 'dashboard'} onClick={() => navigate('dashboard')} />
       <SidebarLink icon={<Users />} text="My Chamas" active={currentPage === 'my-chamas'} onClick={() => navigate('my-chamas')} />
