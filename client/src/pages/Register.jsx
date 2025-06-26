@@ -48,6 +48,7 @@ try {
               required
               value={formData.full_name}
               onChange={handleInputChange}
+               autoComplete='name'
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
             />
           </div>
@@ -62,6 +63,7 @@ try {
           required
           value={formData.phone}
           onChange={handleInputChange}
+           autoComplete='tel'
           className="w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
@@ -75,6 +77,7 @@ try {
           required
           value={formData.email}
           onChange={handleInputChange}
+           autoComplete='email'
           className="w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
@@ -88,6 +91,7 @@ try {
           required
           value={formData.password}
           onChange={handleInputChange}
+           autoComplete='off'
           className="w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
