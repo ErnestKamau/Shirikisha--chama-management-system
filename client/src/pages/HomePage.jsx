@@ -13,7 +13,7 @@ function Homepage() {
        <Features />
        <Cta />
      </main>
-     <Footer />
+     
     </div>
   );
 };

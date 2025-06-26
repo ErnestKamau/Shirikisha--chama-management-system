@@ -9,6 +9,7 @@ import DashBoard from './pages/DashBoard';
 import ChamaGroupsPage from './pages/ChamaGroupsPage';
 import ChamaDetailPage from './pages/ChamaDetailPage';
 
+import { UserProfilePage } from './pages/UserProfilePage';
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/chamas" element={<ChamaGroupsPage />} />
         <Route path="/chamas/:id" element={<ChamaDetailPage />} />
+        <Route path="/profile" element={<UserProfilePage />} />
       </Route>
 
 
