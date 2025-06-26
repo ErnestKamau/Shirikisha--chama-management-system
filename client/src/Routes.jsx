@@ -10,8 +10,6 @@ import ChamaGroupsPage from './pages/ChamaGroupsPage';
 import ChamaDetailPage from './pages/ChamaDetailPage';
 
 import { UserProfilePage } from './pages/UserProfilePage';
-import ChamaGroupsPage from './pages/ChamaGroupsPage';
-import ChamaDetailPage from './pages/ChamaDetailPage';
 
 
 export const AppRoutes = () => {
