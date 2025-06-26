@@ -1,12 +1,12 @@
 import React from 'react';
-import Register from '.components/register';
-import Login from '.components/login';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
+    const navigate = useNavigate();
+    
     function handleSignIn() {
-        // Redirect to the login page
-        window.location.href = '/login';
+        navigate ('/login');
     }
 
 
