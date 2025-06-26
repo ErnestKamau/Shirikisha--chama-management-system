@@ -10,6 +10,9 @@ import ChamaGroupsPage from './pages/ChamaGroupsPage';
 import ChamaDetailPage from './pages/ChamaDetailPage';
 
 import { UserProfilePage } from './pages/UserProfilePage';
+import ChamaGroupsPage from './pages/ChamaGroupsPage';
+import ChamaDetailPage from './pages/ChamaDetailPage';
+
 
 export const AppRoutes = () => {
   return (
@@ -23,6 +26,8 @@ export const AppRoutes = () => {
         <Route path="/chamas" element={<ChamaGroupsPage />} />
         <Route path="/chamas/:id" element={<ChamaDetailPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/chamas" element={<ChamaGroupsPage />} />
+        <Route path="/chamas/:id" element={<ChamaDetailPage />} />
       </Route>
 
 
