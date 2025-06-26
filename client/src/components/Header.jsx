@@ -9,7 +9,6 @@ const Header = () => {
         navigate ('/login');
     }
 
-
     return (
         <header className="absolute top-0 left-0 right-0 z-10 py-6 px-4 sm:px-8 md:px-16 lg:px-24">
             <div className="container mx-auto flex justify-between items-center">
