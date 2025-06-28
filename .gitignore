@@ -9,6 +9,8 @@ Thumbs.db
 
 *.Pipfile
 
+.venv
+
 
 # IDE
 .vscode/

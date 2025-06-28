@@ -40,10 +40,17 @@ class UserLogin(Resource):
             return {"error":"password cannot be empty"}, 400
         
         user = User.query.filter(User.email==email ).first()
-        
+       
         if user and user.authenticate(password):
             token = create_access_token(identity={"id":user.id, "role":user.role})
-            return {'token': token, 'role': user.role}, 200
+            return {
+                'token': token,
+                'role': user.role,
+                'full_name': user.full_name,
+                'id': user.id,
+                'email': user.email
+            }, 200
+
         
         return {'error': 'Invalid credentials'}, 401
     
