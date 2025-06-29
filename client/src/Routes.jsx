@@ -9,6 +9,7 @@ import DashBoard from './pages/DashBoard';
 
 import ChamaGroupsPage from './pages/ChamaGroupsPage';
 import ChamaDetailPage from './pages/ChamaDetailPage';
+import CreateChamaPage from './pages/CreateChama';
 
 import { UserProfilePage } from './pages/UserProfilePage';
 
@@ -25,8 +26,7 @@ export const AppRoutes = () => {
         <Route path="/chamas" element={<ChamaGroupsPage />} />
         <Route path="/chamas/:id" element={<ChamaDetailPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/chamas" element={<ChamaGroupsPage />} />
-        <Route path="/chamas/:id" element={<ChamaDetailPage />} />
+        <Route path="/chamas/create" element={<CreateChamaPage />} />
       </Route>
 
 
