@@ -17,7 +17,7 @@ const RemoveMemberModal = ({ groupId, onClose }) => {
 
     setLoading(true);
     try {
-      await axios.delete(`/api/group/${groupId}/members/${selectedUserId}`);
+      await axios.delete(`/group/${groupId}/members/${selectedUserId}`);
       alert('Member removed successfully');
       onClose();
     } catch (err) {

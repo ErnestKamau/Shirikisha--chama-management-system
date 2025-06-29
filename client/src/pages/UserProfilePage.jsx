@@ -37,7 +37,7 @@ export const UserProfilePage = () => {
     const fetchChamas = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("/api/user/chamagroups", {
+        const res = await axios.get("/user/chamagroups", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setChamaCount(res.data?.length || 0);
@@ -56,7 +56,6 @@ export const UserProfilePage = () => {
 
   const handleSave = async () => {
     try {
-      // TODO: Connect to backend update endpoint
       console.log("Saving changes:", formData);
       setIsEditing(false);
     } catch (err) {
