@@ -5,7 +5,7 @@ from flask_restful import Api, Resource
 from config import app, api, db, jwt, bcrypt
 from controllers.auth_controllers import Register, UserLogin
 from controllers.dashboard import Dashboard, DashboardData
-from controllers.chama_group_controller import CreateChamaGroup, GetGroupMembers, AddUserToGroup, ChangeMemberRole, RemoveMember, GetChamaGroups, ChamaGroupDetail, ContributionUpdate, MeetingCreate
+from controllers.chama_group_controller import CreateChamaGroup, GetGroupMembers, AddUserToGroup, ChangeMemberRole, RemoveMember, GetChamaGroups, ChamaGroupDetail, ContributionUpdate, MeetingCreate, CreateContribution
 from controllers.admin_roles_controllers import GetAllUsers, RemoveUserFromGroup, CurrentUser
 
 
@@ -47,6 +47,9 @@ api.add_resource(MeetingCreate, '/api/groups/<int:group_id>/meetings')
 api.add_resource(CurrentUser, '/api/me', endpoint='me')
 
 api.add_resource(DashboardData, '/api/dashboard-data')
+
+api.add_resource(CreateContribution, '/api/groups/<int:group_id>/contributions')
+
 
 
 

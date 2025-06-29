@@ -7,9 +7,9 @@ import ScheduleMeetingModal from "../components/ScheduleMeetingModule";
 import ChangeMemberRoleModal from '../components/ChangeMemberRoleModal';
 import AddMemberModal from '../components/AddMemberModal';
 import RemoveMemberModal from '../components/RemoveMemberModal';
+import NewContributionModal from '../components/NewContributionModal';
 
 
-// (AddMemberModal, ChangeMemberRoleModal, RemoveMemberModal code remains unchanged for brevity)
 
 const ChamaDetailPage = () => {
   const { id } = useParams();
@@ -23,6 +23,8 @@ const ChamaDetailPage = () => {
   const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [selectedContribution, setSelectedContribution] = useState(null);
   const [showEditContribution, setShowEditContribution] = useState(false);
+  const [showNewContribution, setShowNewContribution] = useState(false);
+
 
   const triggerRefresh = () => setRefreshKey(prev => prev + 1);
 
@@ -67,9 +69,16 @@ const ChamaDetailPage = () => {
           <h2 className="text-2xl font-semibold text-gray-800 mb-2">Members</h2>
           <ul className="divide-y divide-gray-200 bg-white rounded-xl shadow-sm p-4">
             {group.members.map((member) => (
-              <li key={member.id} className="py-2 flex justify-between text-gray-700">
-                <span>{member.full_name} ({member.email})</span>
-                <span className="font-medium text-blue-600 capitalize">{member.role}</span>
+              <li
+                key={member.id}
+                className="py-2 flex justify-between text-gray-700"
+              >
+                <span>
+                  {member.full_name} ({member.email})
+                </span>
+                <span className="font-medium text-blue-600 capitalize">
+                  {member.role}
+                </span>
               </li>
             ))}
           </ul>
@@ -103,10 +112,23 @@ const ChamaDetailPage = () => {
         </section>
 
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Financial Dashboard</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            Financial Dashboard
+          </h2>
           <div className="bg-white rounded-xl shadow-sm p-4">
+            {
+              <button
+                className="mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg"
+                onClick={() => setShowNewContribution(true)}
+              >
+                ➕ Add Contribution
+              </button>
+            }
+
             {isTreasurer && (
-              <p className="text-gray-600 text-sm mb-2">Click a contribution to edit.</p>
+              <p className="text-gray-600 text-sm mb-2">
+                Click a contribution to edit.
+              </p>
             )}
             {group.contributions.length > 0 ? (
               <ul className="text-sm text-gray-700 space-y-1">
@@ -121,10 +143,20 @@ const ChamaDetailPage = () => {
                           setShowEditContribution(true);
                         }}
                       >
-                        💰 KES {c.amount} on {new Date(c.date).toLocaleDateString()} {(c.member?.full_name) ? `(by ${c.member.full_name})` : "(by Unknown)"}
+                        💰 KES {c.amount} on{" "}
+                        {new Date(c.date).toLocaleDateString()}{" "}
+                        {c.member?.full_name
+                          ? `(by ${c.member.full_name})`
+                          : "(by Unknown)"}
                       </button>
                     ) : (
-                      <>💰 KES {c.amount} on {new Date(c.date).toLocaleDateString()} {(c.member?.full_name) ? `(by ${c.member.full_name})` : "(by Unknown)"}</>
+                      <>
+                        💰 KES {c.amount} on{" "}
+                        {new Date(c.date).toLocaleDateString()}{" "}
+                        {c.member?.full_name
+                          ? `(by ${c.member.full_name})`
+                          : "(by Unknown)"}
+                      </>
                     )}
                   </li>
                 ))}
@@ -136,7 +168,9 @@ const ChamaDetailPage = () => {
         </section>
 
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Announcements</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            Announcements
+          </h2>
           <div className="bg-white rounded-xl shadow-sm p-4">
             {group.announcements.length > 0 ? (
               <ul className="text-sm text-gray-700 space-y-1">
@@ -154,7 +188,9 @@ const ChamaDetailPage = () => {
 
         {isAdmin && (
           <section className="mb-6">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Admin Actions</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              Admin Actions
+            </h2>
             <div className="flex flex-wrap gap-4">
               <button
                 className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
@@ -225,6 +261,16 @@ const ChamaDetailPage = () => {
             }}
           />
         )}
+        {showNewContribution && (
+          <NewContributionModal
+            groupId={id}
+            onClose={() => {
+              setShowNewContribution(false);
+              triggerRefresh();
+            }}
+          />
+        )}
+        
       </div>
     </div>
   );

@@ -121,7 +121,7 @@ class GetChamaGroups(Resource):
     def get(self):
         identity = get_jwt_identity()
         user_id = identity['id']
-        
+
         groups = (
             db.session.query(ChamaGroup, Membership)
             .join(Membership, Membership.group_id == ChamaGroup.id)
@@ -129,14 +129,30 @@ class GetChamaGroups(Resource):
             .all()
         )
 
-        return jsonify([
-            {
-                'id': g.id,
-                'name': g.name,
-                'description': g.description,
-                'role': m.role
-            } for g, m in groups
-        ])
+        response = []
+
+        for group, membership in groups:
+            member_count = Membership.query.filter_by(group_id=group.id).count()
+            total_savings = db.session.query(
+                db.func.coalesce(db.func.sum(Contribution.amount), 0)
+            ).filter_by(group_id=group.id).scalar()
+
+            my_contribution = db.session.query(
+                db.func.coalesce(db.func.sum(Contribution.amount), 0)
+            ).filter_by(group_id=group.id, user_id=user_id).scalar()
+
+            response.append({
+                'id': group.id,
+                'name': group.name,
+                'description': group.description,
+                'role': membership.role,
+                'memberCount': member_count,
+                'totalSavings': total_savings,
+                'myContribution': my_contribution,
+                'joinDate': membership.joined_at.isoformat() if membership.joined_at else None
+            })
+
+        return jsonify(response)
 
 
 class ChamaGroupDetail(Resource):
@@ -288,3 +304,39 @@ class MeetingCreate(Resource):
 
         # return jsonify({'message': 'Meeting scheduled successfully', 'meeting': new_meeting.to_dict()})
         return {'message': 'Meeting scheduled successfully'}
+
+
+class CreateContribution(Resource):
+    @jwt_required()
+    def post(self, group_id):
+        identity = get_jwt_identity()
+        user_id = identity['id']
+
+        # Ensure the user is a member of the group
+        membership = Membership.query.filter_by(user_id=user_id, group_id=group_id).first()
+        if not membership:
+            return {'error': 'Unauthorized'}, 403
+
+        data = request.get_json()
+        amount = data.get('amount')
+        date_str = data.get('date')
+
+        if not amount or not date_str:
+            return {'error': 'Amount and date are required.'}, 400
+
+        try:
+            date = datetime.fromisoformat(date_str)
+        except ValueError:
+            return {'error': 'Invalid date format.'}, 400
+
+        new_contribution = Contribution(
+            amount=amount,
+            date=date,
+            user_id=user_id,
+            group_id=group_id
+        )
+
+        db.session.add(new_contribution)
+        db.session.commit()
+
+        return {'message': 'Contribution added successfully'}, 201
