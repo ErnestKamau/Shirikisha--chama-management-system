@@ -8,6 +8,8 @@ exceptiongroup==1.2.2
 executing==2.2.0
 filelock==3.16.1
 greenlet==3.1.1
+gunicorn==23.0.0
+honcho==2.0.0
 importlib_metadata==8.5.0
 importlib_resources==6.4.5
 iniconfig==2.1.0

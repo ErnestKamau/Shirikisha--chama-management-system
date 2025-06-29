@@ -19,7 +19,6 @@ bcrypt = "*"
 requests = "*"
 celery = "*"
 redis = "*"
-gunicorn = "*"
 pytest = "*"
 pytest-flask = "*"
 coverage = "*"
@@ -28,6 +27,7 @@ flask = "*"
 flask-bcrypt = "*"
 sqlalchemy-serializer = "*"
 flask-restful = "*"
+gunicorn = "*"
 
 [dev-packages]
 
