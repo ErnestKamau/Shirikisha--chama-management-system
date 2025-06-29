@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:5555',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5555/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,8 +16,3 @@ instance.interceptors.request.use((config) => {
 });
 
 export default instance;
-
-
-
-
-
