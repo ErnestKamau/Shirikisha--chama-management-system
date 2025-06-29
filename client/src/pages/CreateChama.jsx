@@ -26,7 +26,7 @@ const CreateChamaPage = () => {
         description: formData.description,
       };
 
-      const response = await axios.post('/api/group', payload);
+      const response = await axios.post('/group', payload);
       const groupId = response.data.group_id;
 
       navigate(`/chamas/${groupId}`); // ✅ Redirect to ChamaDetailPage

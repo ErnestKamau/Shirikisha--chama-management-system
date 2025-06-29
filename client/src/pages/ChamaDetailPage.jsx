@@ -31,7 +31,7 @@ const ChamaDetailPage = () => {
   useEffect(() => {
     const fetchGroupDetails = async () => {
       try {
-        const res = await axios.get(`/api/chama-groups/${id}`);
+        const res = await axios.get(`/chama-groups/${id}`);
         const data = res.data;
 
         data.members = data.members || [];

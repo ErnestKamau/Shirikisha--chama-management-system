@@ -16,7 +16,7 @@ export const UserProfilePage = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("/api/me", {
+        const res = await axios.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFormData({

@@ -9,7 +9,7 @@ const useUserChamas = () => {
   useEffect(() => {
     const fetchChamas = async () => {
       try {
-        const res = await axios.get('/api/user/chamagroups'); // match your backend route
+        const res = await axios.get('/user/chamagroups'); // match your backend route
         setChamas(res.data);
       } catch (err) {
         console.error('Failed to fetch chama groups:', err);

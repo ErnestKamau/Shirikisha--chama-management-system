@@ -16,9 +16,9 @@ const DashBoard = () => {
     const fetchUserAndGroups = async () => {
       try {
         const [userRes, groupsRes, dashboardRes] = await Promise.all([
-          axios.get("/api/me"),
-          axios.get("/api/user/chamagroups"),
-          axios.get("/api/dashboard-data"),
+          axios.get("/me"),
+          axios.get("/user/chamagroups"),
+          axios.get("/dashboard-data"),
         ]);
 
 
