@@ -8,7 +8,7 @@ const ChangeMemberRoleModal = ({ groupId, onClose }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(`/api/group/${groupId}/members`)
+    axios.get(`/group/${groupId}/members`)
       .then(res => setMembers(res.data))
       .catch(err => console.error('Failed to fetch members', err));
   }, [groupId]);
@@ -18,7 +18,7 @@ const ChangeMemberRoleModal = ({ groupId, onClose }) => {
 
     setLoading(true);
     try {
-      await axios.post(`/api/groups/${groupId}/change-role/${selectedUserId}`, { role: newRole });
+      await axios.post(`/groups/${groupId}/change-role/${selectedUserId}`, { role: newRole });
       alert('Role changed successfully');
       onClose();
     } catch (err) {

@@ -8,7 +8,7 @@ const AddMemberModal = ({ groupId, onClose }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/users')
+    axios.get('/users')
       .then(res => setUsers(res.data))
       .catch(err => console.error('Failed to fetch users', err));
   }, []);
@@ -18,7 +18,7 @@ const AddMemberModal = ({ groupId, onClose }) => {
 
     setLoading(true);
     try {
-      await axios.post(`/api/groups/${groupId}/add-user/${selectedUserId}`, { role });
+      await axios.post(`/groups/${groupId}/add-user/${selectedUserId}`, { role });
       alert('User added successfully');
       onClose();
     } catch (err) {

@@ -9,7 +9,7 @@ const EditContributionModal = ({ groupId, contribution, onClose }) => {
   const handleSubmit = async () => {
     try {
       await axios.put(
-        `/api/groups/${groupId}/contributions/${contribution.id}`,
+        `/groups/${groupId}/contributions/${contribution.id}`,
         {
           amount,
           date,

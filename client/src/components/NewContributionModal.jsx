@@ -7,7 +7,7 @@ const NewContributionModal = ({ groupId, onClose }) => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`/api/groups/${groupId}/contributions`, {
+      await axios.post(`/groups/${groupId}/contributions`, {
         amount,
         date,
       });

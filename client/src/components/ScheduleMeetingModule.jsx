@@ -9,7 +9,7 @@ const ScheduleMeetingModal = ({ groupId, onClose }) => {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        `/api/groups/${groupId}/meetings`,
+        `/groups/${groupId}/meetings`,
         {
           agenda,
           scheduled_at: scheduledAt,
