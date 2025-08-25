@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from datetime import datetime, timezone
 from app import db
 
+# -- Wallet Transactions Table (For audit trail)
 class WalletTransaction(db.Model,SerializerMixin):
     __tablename__ = 'wallet_transactions'
     __table_args__ = (

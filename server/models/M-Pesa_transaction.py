@@ -1,0 +1,23 @@
+from sqlalchemy_serializer import SerializerMixin
+from datetime import datetime, timezone
+from app import db
+
+class MPesaTransaction(db.Model, SerializerMixin):
+    __tablename__ = 'mpesa_transactions'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    merchant_request_id = db.Column(db.String(100), unique=True)
+    checkout_request_id = db.Column(db.String(100), unique=True)
+    phone_number = db.Column(db.String(15), nullable=False)
+    amount = db.Column(db.Numeric(12, 2), nullable=False)
+    account_reference = db.Column(db.String(50))
+    transaction_desc = db.Column(db.String)
+    status = db.Column(db.Enum('pending', 'success', 'failed', 'cancelled', name='transaction_status'), default='pending')
+    mpesa_reciept_number = db.Column(db.String(50))
+    transaction_date = db.Column(db.DateTime)
+    group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    
+    
