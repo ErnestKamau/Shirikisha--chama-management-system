@@ -18,7 +18,9 @@ class User(db.Model, SerializerMixin):
     contributions = db.relationship('Contribution', back_populates='user', cascade='all, delete-orphan')
     loans = db.relationship('Loan', back_populates='user', cascade='all, delete-orphan')
     attendances = db.relationship('Attendance', back_populates='user', cascade='all, delete-orphan')
-
+    wallet_transactions = db.relationship('WalletTransaction', back_populates='user', cascade='all, delete-orphan')
+    mpesa_transactions = db.relationship('MPesaTransaction', back_populates='user', cascade='all, delete-orphan')
+    
     serialize_rules = ('-memberships.user', '-contributions.user', '-loans.user', '-attendances.user')
 
     @hybrid_property

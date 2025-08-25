@@ -20,7 +20,11 @@ class MPesaTransaction(db.Model, SerializerMixin):
     transaction_date = db.Column(db.DateTime) # When M-Pesa processed it
     group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    contribution_id = db.Column(db.Integer, db.ForeignKey('contributions.id'))
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     
-    
+    group = db.relationship('ChamaGroup', back_populates='mpesa_transactions')
+    user = db.relationship('User', back_populates='mpesa_transactions')
+    contribution = db.relationship('Contribution', back_populates='mpesa_transaction')
+

@@ -19,3 +19,8 @@ class WalletTransaction(db.Model,SerializerMixin):
     description = db.Column(db.String )
     created_by = db.Column(db.Integer, db.ForeignKey('users.id')) # user_id who initiated
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    contribution_id = db.Column(db.Integer, db.ForeignKey('contributions.id'))
+    
+    wallet = db.relationship('wallet', back_populates='transactions')
+    user = db.relationship('User', back_populates='wallet_transactions')
+    contribution = db.relationship('Contribution', back_populates='wallet_transaction')

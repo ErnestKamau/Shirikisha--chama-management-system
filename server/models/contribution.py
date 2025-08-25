@@ -14,13 +14,15 @@ class Contribution(db.Model, SerializerMixin):
     contribution_type = db.Column(db.String, default='regular') # REGULAR, PENALTY, BONUS, LOAN_REPAYMENT
     status = db.Column(db.Enum('pending', 'completed', 'failed', name='contribution_status'), nullable=False, default='pending')
     payment_method = db.Column(db.String, default='M-Pesa') # MPESA, BANK, CASH
-    mpesa_transaction_id = db.Column(db.String, db.ForeignKey('mpesa_transactions.id'))
-    wallet_transactions_id = db.Column(db.String, db.ForeignKey('wallet_transactions.id'))
+    mpesa_transaction_id = db.Column(db.Integer, db.ForeignKey('mpesa_transactions.id'))
+    wallet_transactions_id = db.Column(db.Integer, db.ForeignKey('wallet_transactions.id'))
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
     user = db.relationship('User', back_populates='contributions')
     group = db.relationship('ChamaGroup', back_populates='contributions')
+    mpesa_transaction = db.relationship('MPesaTransaction', back_populates='contribution')
+    wallet_transaction = db.relationship('WalletTransaction', back_populates='contribution')
 
     serialize_rules = ('-user.contributions', '-group.contributions')
 
