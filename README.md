@@ -39,7 +39,7 @@ After running the seed script, you can log in with any of these demo accounts:
 
 1. **Login**: Use one of the demo accounts above on the login page.
 2. **Dashboard**: View your groups, contributions, and upcoming meetings.
-3. **Groups**: Create new chamas, view group details, manage members, and assign roles.
+3. **Groups**: Create new chamas, view group details, manage members, and assign roles. -ADD CONTRIBUTIONS, MANAGE CONTRIBUTIONS
 4. **Profile**: View your profile and see your active chamas.
 
 ---
