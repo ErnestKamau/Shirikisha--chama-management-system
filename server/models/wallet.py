@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from datetime import datetime, timezone
 from app import db
 
+# (One-to-One with Groups)
 class wallet(db.Model, SerializerMixin):
     __tablename__ = 'wallets'
     __table_args__ = (
