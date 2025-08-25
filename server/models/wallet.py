@@ -10,7 +10,7 @@ class wallet(db.Model, SerializerMixin):
     
     id = db.Column(db.Integer, primary_key=True)
     chama_group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'), nullable=False)
-    balance = db.Column(db.Float, nullable=False, default=0.00)
+    balance = db.Column(db.Numeric(12, 2), nullable=False, default=0.00)
     currency = db.Column(db.String, default='KES')
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
