@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from app import db
 
 # (One-to-One with Groups)
-class wallet(db.Model, SerializerMixin):
+class Wallet(db.Model, SerializerMixin):
     __tablename__ = 'wallets'
     __table_args__ = (
         db.CheckConstraint('balance >= 0', name='positive_balance'),
@@ -18,7 +18,7 @@ class wallet(db.Model, SerializerMixin):
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
-    
+   
     group = db.relationship('ChamaGroup', back_populates='wallet')
     transactions = db.relationship('WalletTransaction', back_populates='wallet', cascade='all, delete-orphan')
     

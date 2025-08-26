@@ -15,7 +15,7 @@ class ChamaGroup(db.Model, SerializerMixin):
     loans = db.relationship('Loan', back_populates='group', cascade='all, delete-orphan')
     meetings = db.relationship('Meeting', back_populates='group', cascade='all, delete-orphan')
     announcements = db.relationship('Announcement', back_populates='group', cascade='all, delete-orphan')
-    wallet = db.relationship('wallet', back_populates='group', uselist=False, cascade='all, delete-orphan')
+    wallet = db.relationship('Wallet', back_populates='group', uselist=False, cascade='all, delete-orphan')
     mpesa_transactions = db.relationship('MPesaTransaction', back_populates='group', cascade='all, delete-orphan')
 
     serialize_rules = ('-memberships.group', '-contributions.group', '-loans.group', '-meetings.group', '-announcements.group')

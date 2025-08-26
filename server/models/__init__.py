@@ -6,4 +6,7 @@ from .chama_group import ChamaGroup
 from .announcement import Announcement
 from .loan import Loan
 from .loan_repayment import LoanRepayment
-from .membership import Membership 
+from .membership import Membership
+from .wallet import Wallet
+from .wallet_transaction import WalletTransaction
+from .mpesa_transaction import MPesaTransaction
