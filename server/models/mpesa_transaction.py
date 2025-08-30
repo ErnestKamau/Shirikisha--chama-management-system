@@ -13,7 +13,7 @@ class MPesaTransaction(db.Model, SerializerMixin):
      # Transaction Details
     phone_number = db.Column(db.String(15), nullable=False)
     amount = db.Column(db.Numeric(12, 2), nullable=False)
-    transaction_desc = db.Column(db.String)
+    transaction_desc = db.Column(db.Text)
     status = db.Column(db.Enum('pending', 'success', 'failed', 'cancelled', name='transaction_status', create_type=False), default='pending')
      # M-Pesa Response Fields (populated by callback)
     mpesa_reciept_number = db.Column(db.String(50)) # M-Pesa confirmation code

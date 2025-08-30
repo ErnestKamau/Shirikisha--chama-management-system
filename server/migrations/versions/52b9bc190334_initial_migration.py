@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 77cb2379a361
+Revision ID: 52b9bc190334
 Revises: 
-Create Date: 2025-08-26 18:23:52.421059
+Create Date: 2025-08-26 19:22:49.793591
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '77cb2379a361'
+revision = '52b9bc190334'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,7 +82,7 @@ def upgrade():
     sa.Column('account_reference', sa.String(length=50), nullable=True),
     sa.Column('phone_number', sa.String(length=15), nullable=False),
     sa.Column('amount', sa.Numeric(precision=12, scale=2), nullable=False),
-    sa.Column('transaction_desc', sa.String(), nullable=True),
+    sa.Column('transaction_desc', sa.Text(), nullable=True),
     sa.Column('status', sa.Enum('pending', 'success', 'failed', 'cancelled', name='transaction_status'), nullable=True),
     sa.Column('mpesa_reciept_number', sa.String(length=50), nullable=True),
     sa.Column('transaction_date', sa.DateTime(), nullable=True),
@@ -127,7 +127,7 @@ def upgrade():
     sa.Column('group_id', sa.Integer(), nullable=False),
     sa.Column('contribution_type', sa.String(), nullable=True),
     sa.Column('status', sa.Enum('pending', 'completed', 'failed', name='contribution_status'), nullable=False),
-    sa.Column('payment_method', sa.String(), nullable=True),
+    sa.Column('payment_method', sa.Enum('M-Pesa', 'BANK', 'CASH', name='payment_method'), nullable=True),
     sa.Column('mpesa_transaction_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -152,13 +152,13 @@ def upgrade():
     sa.Column('previous_balance', sa.Numeric(precision=12, scale=2), nullable=False),
     sa.Column('new_balance', sa.Numeric(precision=12, scale=2), nullable=False),
     sa.Column('reference_id', sa.String(), nullable=True),
-    sa.Column('description', sa.String(), nullable=True),
-    sa.Column('created_by', sa.Integer(), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
+    sa.Column('made_by', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('contribution_id', sa.Integer(), nullable=True),
     sa.CheckConstraint('amount >= 0', name='positive_amount'),
     sa.ForeignKeyConstraint(['contribution_id'], ['contributions.id'], ),
-    sa.ForeignKeyConstraint(['created_by'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['made_by'], ['users.id'], ),
     sa.ForeignKeyConstraint(['wallet_id'], ['wallets.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

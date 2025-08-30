@@ -13,7 +13,7 @@ class Contribution(db.Model, SerializerMixin):
     group_id = db.Column(db.Integer, db.ForeignKey('chama_groups.id'), nullable=False)
     contribution_type = db.Column(db.String, default='regular') # REGULAR, PENALTY, BONUS, LOAN_REPAYMENT
     status = db.Column(db.Enum('pending', 'completed', 'failed', name='contribution_status'), nullable=False, default='pending')
-    payment_method = db.Column(db.String, default='M-Pesa') # MPESA, BANK, CASH
+    payment_method = db.Column(db.Enum('M-Pesa', 'BANK', 'CASH', name='payment_method'), default='M-Pesa') # MPESA, BANK, CASH
     mpesa_transaction_id = db.Column(db.Integer, db.ForeignKey('mpesa_transactions.id'))
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
